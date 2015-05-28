@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> header }}
+  </head>
+  <body class="{{#if aside}}has-aside{{/if}}" >
+    <div class="container">
+      {{{ body }}}
+    </div>
+    {{#if aside}}
+      <aside>
+        {{> aside }}
+      </aside>
+    {{/if}}
+  </body>
+</html>
