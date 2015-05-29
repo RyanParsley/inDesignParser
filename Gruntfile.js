@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         stderr: false
       },
       parse: {
-        command: 'node indesignToHTML.js'
+        command: 'node copy/indesignToHTML.js'
       }
     },
     hbs:
