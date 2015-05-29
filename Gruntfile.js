@@ -7,8 +7,11 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['copy/**/*.html'],
-        tasks: ['hbs'],
+        tasks: ['default'],
         options: {
+          options: {
+            reload: true
+          },
           spawn: false,
           atBegin: true
         },
