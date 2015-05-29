@@ -1,0 +1,32 @@
+html {
+  background: #ccc;
+}
+
+body {
+  width: 90%;
+  max-width: 960px;
+  margin:0 auto;
+  background: #fff;
+  padding: 16px;
+  @extend .group;
+}
+
+.has-aside {
+  .container {
+    width:67%;
+    float:left;
+  }
+}
+aside {
+  float:left;
+  width:33%;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+td {
+  width: 33%;
+}

@@ -1,0 +1,33 @@
+html {
+  background: #ccc;
+}
+
+body {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 16px;
+}
+
+.has-aside .container {
+  width: 67%;
+  float: left;
+}
+
+aside {
+  float: left;
+  width: 33%;
+}
+
+.group:after, body:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+td {
+  width: 33%;
+}
+
+/*# sourceMappingURL=style.css.map */

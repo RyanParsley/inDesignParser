@@ -5,13 +5,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {
-      scripts: {
-        files: ['copy/**/*.html'],
+      all: {
+        files: ['copy/**/*.html', 'sass/**/*.scss', '**/*.hbs', 'src/**/*.html'],
         tasks: ['default'],
         options: {
-          options: {
-            reload: true
-          },
+          livereload: true,
           spawn: false,
           atBegin: true
         },
@@ -25,12 +23,40 @@ module.exports = function(grunt) {
         command: 'node copy/indesignToHTML.js'
       }
     },
+    copy: {
+      main: {
+        files: [{
+          expand: true,
+          cwd: 'images',
+          src: ['**'],
+          dest: 'dist/images'
+        }],
+      },
+    },
+    imagemin: {                          // Task
+      all: {                         // Another target
+        files: [{
+          expand: true,                  // Enable dynamic expansion
+          cwd: 'images',                   // Src matches are relative to this path
+          src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+          dest: 'dist/images'                  // Destination path prefix
+        }]
+      }
+    },
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          'dist/css/style.css': 'sass/style.scss'
+        }
+      }
+    },
     hbs:
       {
-      all:
-        {
-        options:
-          {
+      all:{
+        options: {
           layout: 'src/default.hbs',
           partials:
             {
@@ -40,16 +66,16 @@ module.exports = function(grunt) {
         },
         files:
           {
-          'index.html': {
+          'dist/index.html': {
             source: 'copy/fragments/index.html',
             context: { aside: false }
           },
-          'about.html':
+          'dist/about.html':
             {
             source: 'copy/fragments/about.html',
             context: { aside: true }
           },
-          'pricing.html':
+          'dist/pricing.html':
             {
             source: 'copy/fragments/pricing.html',
             context: { aside: true }
@@ -60,6 +86,6 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('default', ['shell:parse', 'hbs']);
+  grunt.registerTask('default', ['shell:parse', 'sass', 'copy', 'hbs']);
 
 };
